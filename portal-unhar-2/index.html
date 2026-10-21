@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Preconnect ke Google Fonts — lebih cepat dari @import di CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=DM+Sans:wght@400;500;600&display=swap"
+      media="print"
+      onload="this.media='all'" />
+    <!-- Fallback jika JS belum load -->
+    <noscript>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap"/>
+    </noscript>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+    <meta name="description" content="Sistem Informasi Akademik Terpadu Universitas Harapan Medan — KRS, Nilai, Jadwal, E-Learning, Pembayaran." />
+
+    <!-- Theme color (address bar / taskbar / splash) -->
+    <meta name="theme-color" content="#5D8736" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#31511E" media="(prefers-color-scheme: dark)" />
+
+    <!-- iOS PWA support -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Portal UNHAR" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+
+    <!-- Manifest akan di-inject otomatis oleh vite-plugin-pwa -->
+
+    <title>Portal Universitas Harapan Medan</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

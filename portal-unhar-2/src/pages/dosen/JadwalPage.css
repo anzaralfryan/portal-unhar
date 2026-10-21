@@ -1,0 +1,168 @@
+@import '../shared.css';
+
+/* ═══════════════════════════════════════════════════════
+   JADWAL DOSEN — Rich Card View
+═══════════════════════════════════════════════════════ */
+
+.jdw-main-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; padding: 20px 24px 0; flex-shrink: 0;
+}
+.jdw-main-title {
+  font-family: var(--font-heading); font-size: 20px; font-weight: 800;
+  color: var(--text); margin: 0 0 4px;
+}
+.jdw-main-sub { font-size: 12.5px; color: var(--text3); }
+.jdw-today-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--primary-light); color: var(--primary);
+  border: 1px solid rgba(93,135,54,0.25);
+  border-radius: 20px; padding: 5px 12px;
+  font-size: 12px; font-weight: 700; white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Ringkasan v2 ── */
+.jdw-summary-v2 { display: flex; flex-direction: column; gap: 8px; }
+.jdw-sum-v2 {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px 12px;
+  box-shadow: var(--shadow-sm);
+}
+.jdw-sum-v2-icon {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: var(--primary-light); color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.jdw-sum-val { font-family:var(--font-heading); font-size:18px; font-weight:800; color:var(--text); display:block; line-height:1.2; }
+.jdw-sum-lbl { font-size:10.5px; color:var(--text3); display:block; margin-top:1px; }
+
+/* ── Skeleton ── */
+.jdw-skeleton {
+  border-radius: 12px;
+  animation: shimmer 1.4s infinite;
+  background: linear-gradient(90deg, var(--border) 25%, #f1f5f9 50%, var(--border) 75%);
+  background-size: 200% 100%;
+}
+@keyframes shimmer { from{background-position:200% 0} to{background-position:-200% 0} }
+
+.jdw-error { background:#fff5f5; border:1px solid #fca5a5; border-radius:var(--radius-sm); padding:12px 16px; font-size:13px; color:#991b1b; margin-bottom:16px; }
+.jdw-empty { display:flex;flex-direction:column;align-items:center;gap:12px;padding:60px 20px;color:var(--text3);font-size:14px; }
+
+/* ── Hari Group ── */
+.jdw-hari-group { margin-bottom: 28px; }
+.jdw-hari-group--today .jdw-hari-hdr { border-bottom-color: var(--primary); }
+.jdw-hari-group--today .jdw-hari-nama { color: var(--primary); }
+
+.jdw-hari-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 14px;
+}
+.jdw-hari-hdr-left { display: flex; align-items: center; gap: 8px; }
+.jdw-hari-nama {
+  font-family: var(--font-heading); font-size: 16px; font-weight: 800;
+  color: var(--text); margin: 0;
+}
+.jdw-hari-today-badge {
+  font-size: 10px; font-weight: 700;
+  background: var(--primary); color: #fff;
+  border-radius: 20px; padding: 2px 10px;
+  animation: pulse-badge 2s infinite;
+}
+@keyframes pulse-badge { 0%,100%{opacity:1}50%{opacity:0.7} }
+
+.jdw-hari-hdr-right { display: flex; align-items: center; gap: 8px; }
+.jdw-hari-range { font-size: 12px; color: var(--text3); }
+.jdw-hari-sks {
+  font-size: 11px; font-weight: 700; color: var(--primary);
+  background: var(--primary-light); border-radius: 8px; padding: 2px 8px;
+}
+.jdw-hari-count {
+  font-size: 11px; color: var(--text3);
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 2px 7px;
+}
+
+.jdw-hari-cards { display: flex; flex-direction: column; gap: 10px; }
+
+/* ── Kartu kelas RICH ── */
+.jdw-kelas-card {
+  display: flex; align-items: stretch; gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.15s, transform 0.12s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.jdw-kelas-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+}
+
+/* Kolom kiri: waktu */
+.jdw-kelas-time-col {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 14px 12px;
+  min-width: 64px; flex-shrink: 0;
+  background: rgba(255,255,255,0.5);
+  border-right: 1px solid rgba(0,0,0,0.06);
+  gap: 4px;
+}
+.jdw-kelas-jam {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 800;
+  line-height: 1;
+}
+.jdw-kelas-jam--end { opacity: 0.65; }
+.jdw-kelas-time-line {
+  width: 2px; flex: 1; border-radius: 2px; opacity: 0.3; min-height: 8px;
+}
+
+/* Kolom tengah: konten */
+.jdw-kelas-body { flex: 1; padding: 14px 16px; min-width: 0; }
+.jdw-kelas-header {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+.jdw-kelas-nama {
+  font-family: var(--font-heading); font-size: 14px; font-weight: 700;
+  margin: 0; flex: 1; line-height: 1.3;
+}
+.jdw-kelas-live {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 700; color: #059669;
+  background: #d1fae5; border-radius: 10px; padding: 2px 8px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.jdw-kelas-live-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #059669;
+  animation: pulse-dot 1.5s infinite;
+}
+@keyframes pulse-dot { 0%,100%{opacity:1}50%{opacity:0.3} }
+
+.jdw-kelas-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.jdw-kelas-chip {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 10.5px; font-weight: 600;
+  border-radius: 6px; padding: 2px 8px;
+}
+
+.jdw-kelas-footer { display: flex; gap: 12px; }
+.jdw-kelas-meta {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; color: var(--text3);
+}
+
+/* Kolom kanan: ruang badge */
+.jdw-kelas-ruang-col {
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px 14px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.35);
+}
+.jdw-kelas-ruang-badge {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 800;
+  border-radius: 8px; padding: 6px 12px;
+  white-space: nowrap; letter-spacing: 0.5px;
+}

@@ -1,0 +1,316 @@
+/* ═══════════════════════════════════════════════
+   JADWAL PAGE v2 — Timeline Calendar Style
+   Terinspirasi: Motiv Calendar (Image 2)
+═══════════════════════════════════════════════ */
+
+/* ── Root layout ── */
+.jdw-root {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* ════════════════════════════════
+   SIDEBAR KIRI
+════════════════════════════════ */
+.jdw-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+.jdw-sidebar::-webkit-scrollbar { display: none; }
+
+/* ── Mini Calendar ── */
+.jdw-cal {
+  padding: 16px 14px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.jdw-cal-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.jdw-cal-title {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 700; color: var(--text);
+}
+.jdw-cal-nav {
+  width: 26px; height: 26px; border-radius: 7px;
+  border: 1.5px solid var(--border); background: var(--bg);
+  cursor: pointer; font-size: 14px; color: var(--text2);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.13s;
+}
+.jdw-cal-nav:hover { border-color: var(--primary); color: var(--primary); }
+
+.jdw-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.jdw-cal-dow {
+  font-size: 9.5px; font-weight: 700; color: var(--text4);
+  text-align: center; padding: 4px 0;
+  text-transform: uppercase;
+}
+.jdw-cal-day {
+  width: 100%; aspect-ratio: 1;
+  border-radius: 8px; border: none; background: none;
+  font-size: 12px; font-weight: 500; color: var(--text2);
+  cursor: pointer; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.1s;
+}
+.jdw-cal-day:hover { background: var(--bg); }
+.jdw-cal-day.today {
+  background: var(--primary); color: #fff; font-weight: 700;
+}
+.jdw-cal-dot {
+  position: absolute; bottom: 2px;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--primary);
+}
+.jdw-cal-day.today .jdw-cal-dot { background: rgba(255,255,255,0.7); }
+
+/* ── Week navigator ── */
+.jdw-week-nav-wrap {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.jdw-week-info {
+  flex: 1; text-align: center;
+  font-size: 11.5px; font-weight: 600; color: var(--text2);
+}
+.jdw-nav-btn {
+  width: 26px; height: 26px; border-radius: 7px;
+  border: 1.5px solid var(--border); background: var(--bg);
+  cursor: pointer; font-size: 14px; color: var(--text2);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.13s; flex-shrink: 0;
+}
+.jdw-nav-btn:hover:not(:disabled) {
+  background: var(--primary); color: #fff; border-color: var(--primary);
+}
+.jdw-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ── Hari buttons ── */
+.jdw-hari-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 10px 6px;
+}
+.jdw-hari-btn2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background 0.12s;
+  position: relative;
+}
+.jdw-hari-btn2:hover { background: var(--bg); }
+.jdw-hari-btn2.active {
+  background: var(--primary-light);
+}
+.jdw-hari-btn2.today .jdw-hari-date {
+  background: var(--primary); color: #fff;
+}
+.jdw-hari-btn2.active .jdw-hari-dow { color: var(--primary); font-weight: 700; }
+
+.jdw-hari-dow {
+  font-size: 11px; font-weight: 600; color: var(--text3);
+  width: 26px; flex-shrink: 0;
+}
+.jdw-hari-date {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); font-size: 13px; font-weight: 700;
+  color: var(--text); flex-shrink: 0;
+  transition: background 0.12s;
+}
+.jdw-hari-date.today { background: var(--primary); color: #fff; }
+.jdw-hari-count {
+  margin-left: auto;
+  font-size: 10.5px; font-weight: 700; color: var(--primary);
+  background: var(--primary-light);
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Periode ── */
+.jdw-periode {
+  margin: 8px 12px 0;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.jdw-periode-label { font-size: 9.5px; font-weight: 700; color: var(--text4); text-transform: uppercase; letter-spacing: 0.5px; }
+.jdw-periode-val   { font-size: 12px; font-weight: 700; color: var(--primary); }
+
+/* ════════════════════════════════
+   MAIN: Timeline
+════════════════════════════════ */
+.jdw-main {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+
+/* Timeline scrollable area */
+.jdw-timeline-wrap {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  padding: 16px 24px 32px 16px;
+}
+.jdw-timeline-wrap::-webkit-scrollbar { width: 4px; }
+.jdw-timeline-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* Timeline container */
+.jdw-timeline {
+  position: relative;
+  margin-left: 52px; /* ruang untuk label jam */
+}
+
+/* Hour rows (background grid) */
+.jdw-hour-row {
+  position: absolute; left: 0; right: 0;
+  display: flex; align-items: flex-start;
+}
+.jdw-hour-label {
+  position: absolute; left: -54px;
+  font-size: 10.5px; font-weight: 600; color: var(--text4);
+  white-space: nowrap; line-height: 1;
+  transform: translateY(-6px);
+}
+.jdw-hour-line {
+  flex: 1; height: 1px; background: var(--border); opacity: 0.7;
+}
+
+/* Current time line */
+.jdw-now-line {
+  position: absolute; left: -54px; right: 0;
+  display: flex; align-items: center; z-index: 20;
+  pointer-events: none;
+}
+.jdw-now-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0; margin-right: 2px;
+  box-shadow: 0 0 0 3px rgba(229,62,62,0.25);
+}
+.jdw-now-bar {
+  flex: 1; height: 2px; background: var(--red); border-radius: 2px;
+}
+.jdw-now-time {
+  font-size: 10px; font-weight: 700; color: var(--red);
+  margin-left: 6px; white-space: nowrap;
+}
+
+/* Event block */
+.jdw-event {
+  position: absolute;
+  left: 0; right: 0;
+  border-radius: var(--radius-sm);
+  padding: 0;
+  cursor: default;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  transition: transform 0.15s, box-shadow 0.15s;
+  z-index: 10;
+}
+.jdw-event:hover {
+  transform: scale(1.01) translateX(2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+  z-index: 20;
+}
+.jdw-event.now {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25), 0 0 0 2px rgba(255,255,255,0.4) inset;
+}
+
+.jdw-event-inner {
+  padding: 8px 12px;
+  height: 100%;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.jdw-event-time {
+  font-size: 10.5px; font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  display: flex; align-items: center; gap: 6px;
+  flex-shrink: 0;
+}
+.jdw-event-dur {
+  background: rgba(255,255,255,0.2);
+  padding: 1px 7px; border-radius: 20px;
+  font-size: 9.5px;
+}
+.jdw-event-title {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 700;
+  color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+.jdw-event-sub {
+  font-size: 11.5px; color: rgba(255,255,255,0.7);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.jdw-event-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(255,255,255,0.2);
+  color: #fff; font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px; margin-top: 2px;
+  width: fit-content;
+}
+.jdw-event-live {
+  font-size: 10px; font-weight: 700;
+  color: #fff; margin-top: auto;
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* Empty state in timeline */
+.jdw-timeline-empty {
+  position: absolute;
+  inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; color: var(--text3); font-size: 14px;
+  pointer-events: none;
+}
+.jdw-timeline-empty span { font-size: 44px; display: block; }
+.jdw-timeline-empty p { font-weight: 600; color: var(--text); }
+.jdw-timeline-empty small { font-size: 12px; }
+
+/* Empty big state */
+.jdw-empty-big {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 80px 20px; gap: 10px;
+  text-align: center;
+}
+.jdw-empty-icon { font-size: 56px; }
+.jdw-empty-big p { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--text); }
+.jdw-empty-big small { font-size: 13px; color: var(--text3); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .jdw-sidebar { width: 200px; }
+  .jdw-cal { display: none; }
+}
+@media (max-width: 700px) {
+  .jdw-root { flex-direction: column; }
+  .jdw-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+  .jdw-hari-list { flex-direction: row; overflow-x: auto; gap: 6px; padding: 8px 10px; }
+  .jdw-hari-btn2 { flex-direction: column; gap: 4px; padding: 8px 10px; min-width: 52px; }
+  .jdw-hari-dow { width: auto; }
+  .jdw-week-nav-wrap { display: none; }
+}

@@ -1,0 +1,111 @@
+/* ═══════════════════════════════════════════════════════
+   AKADEMIK (FAKULTAS) PAGE — UI Polish
+═══════════════════════════════════════════════════════ */
+
+/* ── Breadcrumb ── */
+.fak-breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 18px; font-size: 12.5px;
+  color: var(--text3);
+}
+.fak-breadcrumb-link {
+  cursor: pointer; color: var(--primary); font-weight: 600;
+  transition: color 0.12s; padding: 2px 0;
+  background: none; border: none; font-size: 12.5px;
+  font-family: var(--font-body);
+}
+.fak-breadcrumb-link:hover { color: var(--primary-dark); text-decoration: underline; }
+.fak-breadcrumb-sep { color: var(--border); }
+.fak-breadcrumb-cur { font-weight: 700; color: var(--text); }
+
+/* ── Fakultas Cards Grid ── */
+.fak-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.fak-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+  box-shadow: var(--shadow-xs);
+}
+.fak-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 16px rgba(93,135,54,0.14);
+  transform: translateY(-1px);
+}
+
+.fak-card-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 14px;
+}
+.fak-card-info { flex: 1; }
+.fak-card-kode {
+  display: inline-block;
+  background: var(--primary-light); color: var(--primary);
+  border-radius: 7px; padding: 4px 10px;
+  font-size: 12px; font-weight: 700;
+  margin-bottom: 6px;
+  font-family: var(--font-heading);
+  letter-spacing: 0.3px;
+}
+.fak-card-nama {
+  font-family: var(--font-heading);
+  font-size: 14px; font-weight: 700;
+  color: var(--text); line-height: 1.3;
+  margin: 0;
+}
+.fak-card-actions {
+  display: flex; gap: 5px; margin-left: 10px; flex-shrink: 0;
+}
+
+.fak-card-stats {
+  display: flex; gap: 10px; margin-bottom: 12px;
+}
+.fak-stat-box {
+  background: var(--bg);
+  border-radius: 9px; padding: 8px 12px;
+  flex: 1; text-align: center;
+  border: 1px solid var(--border);
+}
+.fak-stat-num {
+  font-family: var(--font-heading);
+  font-size: 20px; font-weight: 800;
+  color: var(--primary); display: block;
+}
+.fak-stat-lbl {
+  font-size: 10.5px; color: var(--text3); display: block;
+  margin-top: 1px;
+}
+
+.fak-card-prodi-tags {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  margin-bottom: 12px;
+}
+.fak-prodi-tag {
+  background: var(--bg); color: var(--text3);
+  border-radius: 6px; padding: 3px 8px;
+  font-size: 11px; border: 1px solid var(--border);
+}
+
+.fak-card-cta {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 700; color: var(--primary);
+  transition: gap 0.13s;
+}
+.fak-card:hover .fak-card-cta { gap: 8px; }
+
+/* ── Toggle Aktif/Nonaktif button ── */
+.btn-toggle-aktif {
+  padding: 5px 9px; border-radius: 6px; border: none;
+  cursor: pointer; font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.13s;
+}
+.btn-toggle-aktif--on  { background: #fef3c7; color: #d97706; }
+.btn-toggle-aktif--off { background: #d1fae5; color: #059669; }

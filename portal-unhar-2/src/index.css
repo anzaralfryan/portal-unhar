@@ -1,0 +1,554 @@
+/* Google Fonts */
+/* Font Google diload via <link> di index.html untuk performa lebih baik */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ── Palet Warna UNHAR (Earth Olive) ───────────────── */
+  --primary:        #5D8736;   /* Olive hijau utama */
+  --primary-dark:   #31511E;   /* Forest hijau gelap */
+  --primary-mid:    #859F3D;   /* Olive sedang */
+  --primary-light:  #F4FFC3;   /* Kuning hijau muda */
+  --primary-glow:   rgba(93,135,54,0.18);
+
+  /* Alias backward-compat */
+  --teal:       #5D8736;
+  --teal-dark:  #31511E;
+  --teal-mid:   #859F3D;
+  --teal-light: #F4FFC3;
+
+  /* Accent */
+  --accent:       #A9C46C;   /* Kuning hijau accent */
+  --accent-dark:  #809D3C;
+  --accent-light: #F6FCDF;
+
+  /* Sidebar (Dark Charcoal) */
+  --sidebar-bg:           #1A1A19;
+  --sidebar-bg-hover:     rgba(255,255,255,0.07);
+  --sidebar-bg-active:    rgba(93,135,54,0.18);
+  --sidebar-text:         rgba(255,255,255,0.75);
+  --sidebar-text-active:  #ffffff;
+  --sidebar-border:       rgba(255,255,255,0.09);
+  --sidebar-label:        rgba(255,255,255,0.35);
+
+  /* Teks */
+  --text:   #1A1A19;
+  --text2:  #31511E;
+  --text3:  #819067;
+  --text4:  #B1AB86;
+
+  /* Status (tetap semantik) */
+  --red:    #e53e3e;
+  --amber:  #d97706;
+  --blue:   #2563eb;
+  --green:  #5D8736;
+  --purple: #7c3aed;
+
+  /* Background & Card */
+  --bg:     #F6FCDF;
+  --card:   #ffffff;
+  --border: rgba(177,171,134,0.38);
+
+  /* Shadow */
+  --shadow-xs: 0 1px 3px rgba(26,26,25,0.06);
+  --shadow-sm: 0 2px 8px rgba(26,26,25,0.07);
+  --shadow:    0 4px 16px rgba(26,26,25,0.08);
+  --shadow-md: 0 8px 28px rgba(26,26,25,0.10);
+  --shadow-lg: 0 16px 48px rgba(26,26,25,0.13);
+
+  /* Radius */
+  --radius-xs: 6px;
+  --radius-sm: 9px;
+  --radius:    14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+/* Admin & Dosen tetap desktop-first — tidak dirancang untuk mobile */
+body.role-admin,
+body.role-dosen {
+  min-width: 1024px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App layout — sidebar + content */
+.app-layout {
+  display: flex;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.app-content {
+  flex: 1;
+  min-width: 0;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+/* ═════════════════════════════════════════════════════════════
+   MOBILE LAYOUT — hanya aktif pada role mahasiswa (lihat App.jsx)
+   Ditandai body.mobile-mahasiswa di <body>.
+═════════════════════════════════════════════════════════════ */
+body.mobile-mahasiswa {
+  min-width: 0;
+  overflow-x: hidden;
+}
+body.mobile-mahasiswa #root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Layout root pada mobile mahasiswa: stack vertikal, tanpa sidebar */
+body.mobile-mahasiswa .app-layout {
+  flex-direction: column;
+  height: 100dvh;
+  width: 100%;
+}
+body.mobile-mahasiswa .app-content {
+  height: auto;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 74px;   /* space untuk bottom nav */
+  padding-top: 56px;      /* space untuk top bar */
+}
+
+/* Top bar mobile */
+.mobile-topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  height: 56px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: none;                     /* hanya muncul di mobile-mahasiswa */
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+}
+body.mobile-mahasiswa .mobile-topbar { display: flex; }
+
+.mobile-topbar-brand {
+  display: flex; align-items: center; gap: 10px;
+}
+.mobile-topbar-logo {
+  width: 32px; height: 32px;
+  object-fit: contain;
+  border-radius: 7px;
+}
+.mobile-topbar-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-heading);
+}
+.mobile-topbar-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--teal-light);
+}
+.mobile-topbar-avatar img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+/* Bottom nav */
+.mobile-bottomnav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 900;
+  height: 64px;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  display: none;                     /* hanya muncul di mobile-mahasiswa */
+  align-items: stretch;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.04);
+}
+body.mobile-mahasiswa .mobile-bottomnav { display: flex; }
+
+.mobile-bn-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 2px;
+  color: var(--text3);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  min-width: 44px;
+  min-height: 44px;
+  position: relative;
+}
+.mobile-bn-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.mobile-bn-btn.active {
+  color: var(--teal);
+  font-weight: 700;
+}
+.mobile-bn-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 3px;
+  background: var(--teal);
+  border-radius: 0 0 3px 3px;
+}
+.mobile-bn-btn:hover { color: var(--teal-dark); }
+
+/* Drawer untuk "Lainnya" */
+.mobile-drawer-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 950;
+  display: flex;
+  align-items: flex-end;
+}
+.mobile-drawer {
+  width: 100%;
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+  padding: 14px 16px 24px;
+  max-height: 70vh;
+  overflow-y: auto;
+  animation: drawer-up 0.25s ease;
+}
+@keyframes drawer-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.mobile-drawer-handle {
+  width: 44px; height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 0 auto 14px;
+}
+.mobile-drawer-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.mobile-drawer-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  min-height: 48px;
+  font-family: var(--font-body);
+}
+.mobile-drawer-item:hover { background: var(--bg); }
+.mobile-drawer-item.active { background: var(--teal-light); color: var(--teal); font-weight: 700; }
+.mobile-drawer-item svg {
+  width: 20px; height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.mobile-drawer-logout {
+  margin-top: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  color: var(--red) !important;
+}
+
+/* Adjust halaman mahasiswa di mobile ─────────────────────── */
+body.mobile-mahasiswa .page-root {
+  flex-direction: column;
+  height: auto;
+}
+body.mobile-mahasiswa .page-panel {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  border-right: none;
+  border-bottom: 1px solid var(--border);
+  padding: 12px;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 8px;
+}
+body.mobile-mahasiswa .page-panel .panel-section {
+  flex-shrink: 0;
+  min-width: 220px;
+  padding: 0;
+}
+body.mobile-mahasiswa .page-main {
+  padding: 0;
+  width: 100%;
+}
+body.mobile-mahasiswa .content-body {
+  padding: 14px 14px 20px;
+}
+
+/* Tombol lebih besar di mobile — touch target min 44px */
+body.mobile-mahasiswa button:not(.adm-btn-edit):not(.adm-btn-reset):not(.mobile-bn-btn) {
+  min-height: 40px;
+}
+
+/* Tabel/list lebih enak di baca */
+body.mobile-mahasiswa .card .list-item {
+  padding: 14px 12px;
+  gap: 10px;
+}
+body.mobile-mahasiswa .list-body h4 {
+  font-size: 14px;
+}
+body.mobile-mahasiswa .list-body p {
+  font-size: 12px;
+}
+
+/* Sidebar tidak ditampilkan di mobile-mahasiswa */
+body.mobile-mahasiswa .app-sidebar {
+  display: none !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   BATCH 7c — Mobile Mahasiswa Improvements
+   Perbaikan layout halaman-halaman spesifik di HP
+════════════════════════════════════════════════════════════ */
+
+/* Dashboard — stat cards stack jadi 2 kolom di HP */
+body.mobile-mahasiswa .dash-stats {
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+body.mobile-mahasiswa .dash-stat-card {
+  padding: 14px 12px;
+}
+body.mobile-mahasiswa .dsc-val {
+  font-size: 22px;
+}
+/* Dashboard grid: 1 kolom di mobile */
+body.mobile-mahasiswa .dash-grid {
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+body.mobile-mahasiswa .dash-col-side {
+  display: none;   /* info akun tersembunyi di mobile — ada di halaman Profil */
+}
+/* Menu grid mahasiswa: 2 kolom di mobile */
+body.mobile-mahasiswa .dash-menu-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+body.mobile-mahasiswa .dash-menu-item {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px 12px;
+}
+body.mobile-mahasiswa .dash-menu-sub {
+  display: none;   /* terlalu panjang di HP kecil */
+}
+
+/* Pembayaran — stack 1 kolom */
+body.mobile-mahasiswa .pem-grid {
+  grid-template-columns: 1fr;
+}
+body.mobile-mahasiswa .pem-tagihan-top {
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+body.mobile-mahasiswa .pem-tagihan-nominal {
+  font-size: 26px;
+}
+body.mobile-mahasiswa .pem-modal {
+  width: calc(100vw - 32px);
+  max-height: 85dvh;
+  overflow-y: auto;
+}
+
+/* KRS — tabel jadi kartu di mobile */
+body.mobile-mahasiswa .krs-table-header {
+  display: none;
+}
+body.mobile-mahasiswa .krs-row {
+  flex-direction: column;
+  padding: 12px;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+}
+body.mobile-mahasiswa .krs-col-sks,
+body.mobile-mahasiswa .krs-col-hari,
+body.mobile-mahasiswa .krs-col-jam {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+/* Nilai/Transkrip — tabel scroll horizontal */
+body.mobile-mahasiswa .nilai-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+body.mobile-mahasiswa .nilai-table-wrap table {
+  min-width: 500px;
+}
+
+/* E-Learning — tab label singkat di HP */
+body.mobile-mahasiswa .elearning-tabs {
+  gap: 4px;
+}
+body.mobile-mahasiswa .elearning-tab {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+/* Notifikasi — card full width */
+body.mobile-mahasiswa .notif-item {
+  padding: 12px;
+}
+body.mobile-mahasiswa .notif-actions {
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Page header — judul lebih kecil di HP */
+body.mobile-mahasiswa .page-header {
+  padding: 16px 14px 12px;
+}
+body.mobile-mahasiswa .page-header h1 {
+  font-size: 18px;
+}
+body.mobile-mahasiswa .page-header p {
+  font-size: 12px;
+}
+
+/* Card: kurangi padding di HP */
+body.mobile-mahasiswa .card {
+  border-radius: 12px;
+}
+
+/* Badge lebih compact */
+body.mobile-mahasiswa .badge {
+  font-size: 10px;
+  padding: 2px 7px;
+}
+
+/* Section title spacing */
+body.mobile-mahasiswa .section-title {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+/* Sembunyikan PageHeader subtitle di HP sangat kecil */
+@media (max-width: 380px) {
+  body.mobile-mahasiswa .page-header p {
+    display: none;
+  }
+  body.mobile-mahasiswa .dsc-val {
+    font-size: 18px;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   LIGHTHOUSE OPTIMIZATION — Accessibility & Performance
+════════════════════════════════════════════════════════════ */
+
+/* Skip to content link untuk keyboard navigation */
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--teal);
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 9999;
+  border-radius: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-to-main:focus {
+  top: 0;
+}
+
+/* Focus ring yang jelas untuk navigasi keyboard */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Pastikan semua img punya display block untuk menghindari gap */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Kontras minimum untuk teks kecil */
+.badge {
+  font-weight: 600; /* text tebal = kontras lebih baik */
+}
+
+/* Scroll behavior smooth untuk accessibility */
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

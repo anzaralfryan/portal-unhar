@@ -1,0 +1,306 @@
+@import '../shared.css';
+
+/* ═══════════════════════════════════════════════
+   NILAI PAGE — Mobile-first redesign
+═══════════════════════════════════════════════ */
+
+/* ── IPK Box (panel kiri, desktop) ── */
+.nil-ipk-box {
+  padding: 22px 16px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  margin: 14px 10px 6px;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px var(--primary-glow);
+  position: relative;
+  overflow: hidden;
+}
+.nil-ipk-box::before {
+  content: ''; position: absolute; top: -30px; right: -30px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: rgba(255,255,255,0.08); pointer-events: none;
+}
+.nil-ipk-val {
+  font-family: var(--font-heading);
+  font-size: 48px; font-weight: 800;
+  color: #fff; line-height: 1;
+  position: relative; z-index: 1;
+}
+.nil-ipk-lbl {
+  font-size: 10.5px; color: rgba(255,255,255,0.75);
+  font-weight: 700; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.8px;
+}
+.nil-ipk-stats {
+  display: flex; justify-content: center; gap: 20px; margin-top: 14px;
+  position: relative; z-index: 1;
+}
+.nil-ipk-stats div { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.nil-ipk-stats span {
+  font-family: var(--font-heading); font-size: 18px; font-weight: 800; color: #fff; line-height: 1;
+}
+.nil-ipk-stats small { font-size: 9.5px; color: rgba(255,255,255,0.65); font-weight: 600; }
+.nil-ipk-divider { width: 1px; background: rgba(255,255,255,0.2); align-self: stretch; margin: 4px 0; }
+
+/* ── Semester buttons (panel kiri, desktop) ── */
+.nil-sem-btn {
+  display: flex; align-items: center; width: 100%;
+  padding: 10px 10px; border-radius: var(--radius-sm); border: none;
+  background: none; cursor: pointer; margin-bottom: 3px; transition: background 0.13s;
+}
+.nil-sem-btn:hover  { background: var(--bg); }
+.nil-sem-btn.active { background: var(--primary-light); }
+.nil-sem-info { flex: 1; display: flex; flex-direction: column; gap: 2px; text-align: left; }
+.nil-sem-label { font-family: var(--font-heading); font-size: 12.5px; font-weight: 600; color: var(--text); }
+.nil-sem-btn.active .nil-sem-label { color: var(--primary); }
+.nil-sem-sub { font-size: 10.5px; color: var(--text3); }
+.nil-ips-pill {
+  font-family: var(--font-heading); font-size: 12.5px; font-weight: 700; color: var(--primary);
+  background: var(--primary-light); padding: 2px 9px; border-radius: var(--radius-sm); flex-shrink: 0;
+}
+.nil-sem-btn.active .nil-ips-pill { background: rgba(15,158,123,0.18); }
+
+/* ── Konten kanan ── */
+.nil-sem-hdr {
+  display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px;
+}
+.nil-sem-title { font-family: var(--font-heading); font-size: 20px; font-weight: 800; color: var(--text); }
+.nil-sem-sub2  { font-size: 13px; color: var(--text3); margin-top: 3px; }
+
+.nil-ips-badge {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--primary-light); border-radius: var(--radius);
+  padding: 12px 20px; gap: 4px; border: 1px solid rgba(15,158,123,0.15);
+}
+.nil-ips-big  { font-family: var(--font-heading); font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1; }
+.nil-ips-lbl2 { font-size: 10.5px; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ── Grade badges ── */
+.nil-grade { display: flex; flex-direction: column; align-items: center; gap: 3px; flex-shrink: 0; }
+.nil-grade-huruf {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 800;
+  padding: 3px 12px; border-radius: 20px; min-width: 40px; text-align: center;
+}
+.nil-grade-angka { font-size: 10.5px; color: var(--text3); font-weight: 500; }
+
+/* ── Skeleton + utilities ── */
+.nil-skeleton {
+  background: linear-gradient(90deg, var(--border) 25%, #f1f5f9 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  border-radius: var(--radius-sm); height: 40px;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+.nil-error {
+  background: #fff5f5; border: 1px solid #fca5a5;
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  font-size: 13px; color: #991b1b; margin-bottom: 16px;
+}
+.nil-empty { text-align: center; padding: 60px; color: var(--text3); font-size: 14px; }
+
+/* ── Transkrip tombol ── */
+.nil-transkrip-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: var(--radius-sm);
+  background: var(--primary); color: #fff; border: none;
+  font-family: var(--font-heading); font-size: 13px; font-weight: 700;
+  cursor: pointer; box-shadow: 0 3px 12px var(--primary-glow);
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.nil-transkrip-btn:hover { background: var(--primary-dark); }
+.nil-transkrip-btn svg { width: 14px; height: 14px; stroke: currentColor; }
+
+/* ════════════════════════════════════════════
+   MOBILE — elemen khusus mobile (hidden di desktop)
+════════════════════════════════════════════ */
+
+/* Default: sembunyikan di desktop, tampil di mobile */
+.nil-mobile-top    { display: none; }
+
+/* ── Mobile: IPK bar ── */
+.nil-mobile-ipk {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  padding: 14px 16px;
+  box-shadow: 0 3px 12px var(--primary-glow);
+}
+.nil-mobile-ipk-val {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 70px;
+}
+.nil-mobile-ipk-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nil-mobile-ipk-info > span {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+.nil-mobile-ipk-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  flex-wrap: wrap;
+}
+.nil-mobile-ipk-stats span:nth-child(2) {
+  color: rgba(255,255,255,0.4);
+}
+.nil-mobile-transkrip-btn {
+  flex-shrink: 0;
+  padding: 8px 12px !important;
+  font-size: 11.5px !important;
+  gap: 5px !important;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.18) !important;
+  border: 1.5px solid rgba(255,255,255,0.35) !important;
+  box-shadow: none !important;
+}
+.nil-mobile-transkrip-btn:hover {
+  background: rgba(255,255,255,0.28) !important;
+}
+.nil-mobile-transkrip-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Mobile: filter row ── */
+.nil-mobile-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+.nil-mobile-select {
+  font-size: 12px !important;
+  padding: 7px 28px 7px 10px !important;
+}
+
+/* ── Mobile: semester chips (scroll horizontal) ── */
+.nil-mobile-sems {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.nil-mobile-sems::-webkit-scrollbar { display: none; }
+
+.nil-mobile-sem-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 99px;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.13s;
+}
+.nil-mobile-sem-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.nil-mobile-sem-ips {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: rgba(255,255,255,0.22);
+  color: inherit;
+}
+.nil-mobile-sem-chip:not(.active) .nil-mobile-sem-ips {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE — breakpoint mobile ≤ 640px
+════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  /* Tampilkan elemen mobile */
+  .nil-mobile-top { display: block; }
+
+  /* Sembunyikan sidebar desktop dan header desktop */
+  .nil-desktop-panel  { display: none !important; }
+  .nil-desktop-header { display: none !important; }
+  .nil-desktop-ipk    { display: none !important; }
+
+  /* page-root jadi kolom tunggal */
+  .nil-root {
+    flex-direction: column;
+  }
+
+  /* page-main mengambil seluruh lebar */
+  .nil-root .page-main {
+    width: 100%;
+    height: auto;
+    flex: 1;
+  }
+
+  /* content-body: kurangi padding */
+  .nil-root .content-body {
+    padding: 14px 12px 80px;
+  }
+
+  /* nil-sem-hdr: lebih kompak di mobile */
+  .nil-sem-hdr {
+    margin-bottom: 14px;
+    align-items: center;
+  }
+  .nil-sem-title {
+    font-size: 16px;
+  }
+  .nil-sem-sub2 {
+    font-size: 12px;
+  }
+  .nil-ips-badge {
+    padding: 8px 14px;
+    gap: 2px;
+  }
+  .nil-ips-big {
+    font-size: 24px;
+  }
+  .nil-ips-lbl2 {
+    font-size: 9.5px;
+  }
+
+  /* list-item di mobile: beri ruang lebih */
+  .nil-root .list-item {
+    padding: 12px 14px;
+  }
+
+  /* grade badge: sedikit lebih kecil */
+  .nil-grade-huruf {
+    font-size: 12px;
+    padding: 3px 10px;
+    min-width: 34px;
+  }
+  .nil-grade-angka {
+    font-size: 10px;
+  }
+}

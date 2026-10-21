@@ -1,0 +1,346 @@
+@import '../shared.css';
+
+/* ═══════════════════════════════════════════════
+   DASHBOARD — Bento Grid Style
+   Palet: Earth Olive (#5D8736, #31511E, #F6FCDF)
+═══════════════════════════════════════════════ */
+
+.dash-root {
+  display: flex; flex-direction: column;
+  height: 100%; overflow: hidden; background: var(--bg);
+}
+
+/* ── Hero Banner ── */
+.dash-hero {
+  background: linear-gradient(135deg, #5D8736 0%, #31511E 60%, #0A400C 100%);
+  padding: 26px 32px 30px;
+  position: relative; overflow: hidden; flex-shrink: 0;
+}
+.dash-hero::before {
+  content: ''; position: absolute; top:-60px; right:-60px;
+  width:240px; height:240px; border-radius:50%;
+  background:rgba(255,255,255,0.07); pointer-events:none;
+}
+.dash-hero::after {
+  content: ''; position: absolute; bottom:-80px; right:100px;
+  width:200px; height:200px; border-radius:50%;
+  background:rgba(255,255,255,0.04); pointer-events:none;
+}
+.dash-hero-ring {
+  position:absolute; border-radius:50%;
+  border:2px solid rgba(255,255,255,0.10); pointer-events:none;
+}
+.dash-hero-ring-1 { width:110px; height:110px; top:-32px; left:55px; }
+.dash-hero-ring-2 { width:65px;  height:65px;  top:18px;  left:128px; }
+.dash-hero-accent {
+  position:absolute; bottom:0; left:0; width:4px; height:55%;
+  background: linear-gradient(180deg, transparent, #A9C46C);
+  border-radius:0 3px 3px 0; opacity:0.8;
+}
+.dash-hero-sparkle {
+  position:absolute; top:20px; right:48px;
+  display:flex; gap:14px; pointer-events:none;
+}
+.dash-hero-sparkle span {
+  border-radius:50%; background:rgba(255,255,255,0.55); display:block;
+  animation:sparkleFloat 3s ease-in-out infinite;
+}
+.dash-hero-sparkle span:nth-child(1){width:6px;height:6px;animation-delay:0s}
+.dash-hero-sparkle span:nth-child(2){width:10px;height:10px;margin-top:8px;animation-delay:.5s}
+.dash-hero-sparkle span:nth-child(3){width:7px;height:7px;margin-top:18px;animation-delay:1s}
+.dash-hero-sparkle span:nth-child(4){width:5px;height:5px;margin-top:4px;animation-delay:1.5s}
+@keyframes sparkleFloat {
+  0%,100%{opacity:.5;transform:translateY(0) scale(1)}
+  50%{opacity:1;transform:translateY(-5px) scale(1.15)}
+}
+.dash-hero-inner {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  position:relative; z-index:1;
+}
+.dash-hero-tag { font-size:10px; font-weight:700; color:rgba(255,255,255,.6); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; }
+.dash-hero-greeting { font-family:var(--font-heading); font-size:26px; font-weight:800; color:#fff; line-height:1.2; margin-bottom:4px; }
+.dash-hero-date { font-size:12.5px; color:rgba(255,255,255,.6); }
+.dash-hero-chip {
+  background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25);
+  border-radius:20px; padding:7px 16px; font-size:12px; font-weight:700;
+  color:rgba(255,255,255,.95); backdrop-filter:blur(6px);
+}
+
+/* ── Scrollable content area ── */
+.dash-content {
+  flex:1; overflow-y:auto; padding:20px 28px 36px;
+  background-image: radial-gradient(circle, rgba(93,135,54,0.06) 1px, transparent 1px);
+  background-size:22px 22px;
+}
+.dash-content::-webkit-scrollbar{width:4px}
+.dash-content::-webkit-scrollbar-thumb{background:rgba(177,171,134,0.5);border-radius:4px}
+
+/* ════════════════════════
+   BENTO CARDS — base
+════════════════════════ */
+.bcard {
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.bcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+/* Color variants — olive palette */
+.bcard--green {
+  background: linear-gradient(135deg, #5D8736 0%, #31511E 100%);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(93,135,54,0.35);
+}
+.bcard--blue {
+  background: linear-gradient(135deg, #31511E 0%, #0A400C 100%);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(49,81,30,0.3);
+}
+.bcard--dark {
+  background: linear-gradient(135deg, #1A1A19 0%, #0A400C 100%);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(26,26,25,0.3);
+}
+.bcard--red {
+  background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(220,38,38,0.3);
+}
+.bcard--subtle {
+  background: linear-gradient(135deg, #F4FFC3 0%, #F6FCDF 100%);
+  border: 1.5px solid rgba(169,196,108,0.5);
+  box-shadow: var(--shadow-sm);
+}
+.bcard--white {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Typography inside bcard */
+.bcard-label {
+  font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  opacity: 0.7; margin-bottom: 12px;
+}
+.bcard--white .bcard-label  { opacity: 1; color: var(--text3); }
+.bcard--subtle .bcard-label { opacity: 1; color: #5D8736; }
+
+.bcard-big {
+  font-family: var(--font-heading);
+  font-size: 48px; font-weight: 800; line-height: 1; color: #fff; margin-bottom: 4px;
+}
+.bcard-big--sm { font-size: 38px; }
+.bcard--subtle .bcard-big { color: #31511E; }
+.bcard-sub { font-size: 12px; opacity: 0.65; color: #fff; }
+.bcard--subtle .bcard-sub { color: var(--text2); opacity: 1; }
+
+.bcard-foot { margin-top: 12px; }
+.bcard-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; white-space: nowrap;
+}
+.bcard-badge.green  { background: rgba(169,196,108,0.3); color: #F4FFC3; }
+.bcard-badge.yellow { background: rgba(169,196,108,0.25); color: #F4FFC3; }
+.bcard-badge.red    { background: rgba(252,165,165,0.25); color: #fca5a5; }
+.bcard--subtle .bcard-badge.green { background: rgba(93,135,54,0.15); color: #31511E; }
+
+/* ── Arc progress (IPK) ── */
+.bcard-arc-wrap {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 90px; height: 90px; margin: 4px 0 12px;
+}
+.bcard-arc-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.bcard-arc-center .bcard-big { font-size: 22px; margin: 0; line-height: 1; }
+.bcard-arc-center .bcard-sub { font-size: 10px; margin: 0; }
+
+/* ── Progress bar (SKS) ── */
+.bcard-prog-track {
+  height: 8px; background: rgba(255,255,255,0.2);
+  border-radius: 20px; overflow: hidden; margin-bottom: 6px;
+}
+.bcard-prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #A9C46C, #F4FFC3);
+  border-radius: 20px; transition: width 1s ease;
+}
+.bcard-prog-labels {
+  display: flex; justify-content: space-between;
+  font-size: 10.5px; opacity: 0.65; color: #fff; margin-bottom: 10px;
+}
+
+/* Mini bars */
+.bcard-mini-bars { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
+.dbc-mini-bar { display: flex; align-items: center; gap: 8px; }
+.dbc-mini-bar-track {
+  flex: 1; height: 4px; background: rgba(255,255,255,0.15);
+  border-radius: 20px; overflow: hidden;
+}
+.dbc-mini-bar-fill { height: 100%; border-radius: 20px; transition: width 0.8s ease; }
+.dbc-mini-bar-label { font-size: 9.5px; opacity: 0.6; color: #fff; white-space: nowrap; width: 36px; text-align: right; }
+
+/* Action button in bcard */
+.bcard-action-btn {
+  display: inline-flex; align-items: center;
+  background: rgba(255,255,255,0.18); color: #fff; border: 1px solid rgba(255,255,255,0.28);
+  padding: 6px 14px; border-radius: 20px; font-size: 11.5px; font-weight: 700;
+  cursor: pointer; margin-top: 8px; transition: background 0.13s;
+}
+.bcard-action-btn:hover { background: rgba(255,255,255,0.28); }
+.bcard--subtle .bcard-action-btn {
+  background: #5D8736; color: #fff; border: none;
+  box-shadow: 0 2px 8px rgba(93,135,54,0.3);
+}
+
+/* ════════════════════════
+   BENTO ROW 1 — stat cards
+════════════════════════ */
+.bento-row1 {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 0.9fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+/* ════════════════════════
+   BENTO ROW 2 — jadwal + info
+════════════════════════ */
+.bento-row2 {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+/* Jadwal card */
+.bcard--jadwal { display: flex; flex-direction: column; }
+.bcard-jadwal-hdr {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.bcard-jadwal-hari {
+  font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--text);
+  margin-top: 2px;
+}
+.bcard-link {
+  font-size: 12px; font-weight: 700; color: #5D8736;
+  background: none; border: none; cursor: pointer; padding: 4px 0;
+}
+.bcard-link:hover { text-decoration: underline; }
+.bcard-jadwal-empty {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; padding: 24px; color: var(--text3); font-size: 13px;
+}
+.bcard-jadwal-empty span { font-size: 32px; }
+.bcard-jadwal-list { display: flex; flex-direction: column; gap: 8px; }
+
+/* Jadwal item */
+.dbc-jadwal-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 12px; border-radius: var(--radius-sm);
+  background: #F6FCDF; border: 1px solid rgba(177,171,134,0.3);
+  transition: background 0.13s, border-color 0.13s;
+}
+.dbc-jadwal-item.active {
+  background: #F4FFC3; border-color: #5D8736;
+}
+.dbc-jadwal-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.dbc-jadwal-matkul {
+  font-family: var(--font-heading); font-size: 12.5px; font-weight: 700;
+  color: var(--text); display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.dbc-jadwal-meta { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.dbc-now-badge {
+  display: inline-block; background: #5D8736; color: #fff;
+  font-size: 9.5px; font-weight: 700; padding: 1px 7px;
+  border-radius: 20px; animation: pulse-now 2s infinite;
+}
+@keyframes pulse-now {
+  0%,100%{ box-shadow: 0 0 0 0 rgba(93,135,54,0.5); }
+  50%{ box-shadow: 0 0 0 6px rgba(93,135,54,0); }
+}
+
+/* Info card */
+.bcard--info { display: flex; flex-direction: column; }
+.bcard-info-grid { display: flex; flex-direction: column; gap: 0; margin-top: 8px; flex: 1; }
+.bcard-info-row {
+  display: flex; gap: 10px; padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.bcard-info-row:last-child { border-bottom: none; }
+.bcard-info-key { font-size: 11.5px; color: var(--text3); min-width: 70px; flex-shrink: 0; }
+.bcard-info-val { font-size: 12.5px; font-weight: 600; color: var(--text); }
+
+/* ════════════════════════
+   MENU GRID — olive gradient cards
+════════════════════════ */
+.dash-section-title {
+  font-family: var(--font-heading); font-size: 14px; font-weight: 800;
+  color: var(--text); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.dash-section-title::before {
+  content: ''; width: 3px; height: 16px;
+  background: linear-gradient(180deg, #5D8736, #A9C46C);
+  border-radius: 3px; flex-shrink: 0;
+}
+
+.bento-menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.bmenu-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 18px; border-radius: var(--radius);
+  cursor: pointer; color: #fff;
+  transition: transform 0.18s, box-shadow 0.18s;
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+.bmenu-card::before {
+  content: ''; position: absolute; top:-20px; right:-20px;
+  width:80px; height:80px; border-radius:50%;
+  background:rgba(255,255,255,0.08); pointer-events:none;
+  transition: transform 0.3s;
+}
+.bmenu-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+.bmenu-card:hover::before { transform: scale(2); }
+.bmenu-card--wide { grid-column: span 2; }
+
+.bmenu-icon { font-size: 26px; flex-shrink: 0; }
+.bmenu-body { flex: 1; min-width: 0; }
+.bmenu-label { font-family: var(--font-heading); font-size: 13.5px; font-weight: 800; color: #fff; }
+.bmenu-sub   { font-size: 11.5px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.bmenu-arrow { font-size: 18px; color: rgba(255,255,255,0.7); flex-shrink: 0; transition: transform 0.18s, color 0.18s; }
+.bmenu-card:hover .bmenu-arrow { transform: translateX(4px); color: #fff; }
+
+/* ── Dosen mini bar chart ── */
+.dosen-mini-chart {
+  display: flex; align-items: flex-end; gap: 5px;
+  height: 40px; margin-top: 14px;
+}
+.dmc-col  { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; height: 100%; }
+.dmc-bar  { flex: 1; width: 100%; border-radius: 3px 3px 0 0; background: rgba(255,255,255,0.4); min-height: 4px; }
+.dmc-lbl  { font-size: 8.5px; color: rgba(255,255,255,0.55); }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .bento-row1 { grid-template-columns: repeat(2, 1fr); }
+  .bento-row2 { grid-template-columns: 1fr; }
+  .bento-menu { grid-template-columns: repeat(2, 1fr); }
+  .bmenu-card--wide { grid-column: span 1; }
+}
+@media (max-width: 700px) {
+  .dash-content { padding: 14px 14px 32px; }
+  .bento-row1 { gap: 10px; }
+  .bento-menu { grid-template-columns: 1fr; }
+}

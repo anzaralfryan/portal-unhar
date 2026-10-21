@@ -1,0 +1,158 @@
+@import '../shared.css';
+
+.el-skeleton { height: 44px; background: var(--bg); border-radius: 10px; animation: shimmer 1.4s infinite; background: linear-gradient(90deg, var(--border) 25%, #f1f5f9 50%, var(--border) 75%); background-size: 200% 100%; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+
+.el-empty { display:flex; flex-direction:column; align-items:center; gap:12px; padding:60px 20px; color:var(--text3); font-size:14px; }
+.el-empty-text { font-size:13px; color:var(--text3); padding:20px 0; text-align:center; }
+
+/* Tabs */
+.el-tabs {
+  display:flex; gap:4px; margin-bottom:20px;
+  border-bottom:2px solid var(--border); padding-bottom:0;
+}
+.el-tab {
+  display:flex; align-items:center; gap:6px;
+  padding:10px 18px; border:none; background:none;
+  font-family:var(--font-heading); font-size:13px; font-weight:600;
+  color:var(--text3); cursor:pointer;
+  border-bottom:2px solid transparent; margin-bottom:-2px;
+  transition:color 0.15s, border-color 0.15s;
+}
+.el-tab:hover { color:var(--text); }
+.el-tab.active { color:var(--primary); border-bottom-color:var(--primary); }
+
+/* Section header */
+.el-section-hdr {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:16px;
+}
+.el-section-hdr h3 { font-family:var(--font-heading); font-size:15px; font-weight:700; color:var(--text); }
+
+.el-add-btn {
+  font-family:var(--font-heading); font-size:12px; font-weight:700;
+  color:var(--primary); background:var(--primary-light);
+  border:none; padding:8px 16px; border-radius:var(--radius-xs);
+  cursor:pointer; transition:background 0.15s;
+}
+.el-add-btn:hover { background:#ccf0e3; }
+
+/* Form card */
+.el-form-card {
+  background:#fff; border:1.5px solid var(--border); border-radius:var(--radius);
+  padding:18px 20px; margin-bottom:20px;
+  display:flex; flex-direction:column; gap:14px;
+}
+.el-form-row { display:flex; flex-direction:column; gap:5px; }
+.el-form-row label {
+  font-family:var(--font-heading); font-size:11px; font-weight:700;
+  color:var(--text2); text-transform:uppercase; letter-spacing:0.5px;
+}
+.el-input {
+  width:100%; padding:10px 12px; border:1.5px solid var(--border);
+  border-radius:var(--radius-sm); font-family:var(--font-body); font-size:13px;
+  color:var(--text); outline:none; background:#fff;
+  transition:border-color 0.15s;
+}
+.el-input:focus { border-color:var(--primary); }
+.el-input::placeholder { color:#b8c5d3; }
+
+.el-textarea {
+  width:100%; padding:10px 12px; border:1.5px solid var(--border);
+  border-radius:var(--radius-sm); font-family:var(--font-body); font-size:13px;
+  color:var(--text); outline:none; resize:vertical; background:#fff;
+  transition:border-color 0.15s;
+}
+.el-textarea:focus { border-color:var(--primary); }
+
+.el-input-file { font-size:13px; color:var(--text2); }
+
+.el-err { font-size:12px; color:var(--red); }
+
+.el-submit-btn {
+  align-self:flex-start;
+  background:var(--primary); color:#fff; border:none;
+  padding:10px 24px; border-radius:var(--radius-sm);
+  font-family:var(--font-heading); font-size:13px; font-weight:700;
+  cursor:pointer; transition:background 0.2s;
+}
+.el-submit-btn:hover:not(:disabled) { background:var(--primary-dark); }
+.el-submit-btn:disabled { opacity:0.5; cursor:not-allowed; }
+
+/* Delete button */
+.el-del-btn {
+  width:32px; height:32px; border-radius:var(--radius-xs); border:none;
+  background:none; cursor:pointer; color:var(--text3);
+  display:flex; align-items:center; justify-content:center;
+  transition:background 0.13s, color 0.13s; flex-shrink:0;
+}
+.el-del-btn:hover { background:#fee2e2; color:var(--red); }
+
+/* Grade button (submission) */
+.el-grade-btn {
+  font-family:var(--font-heading); font-size:11px; font-weight:700;
+  color:#fff; background:var(--primary); border:none;
+  padding:5px 12px; border-radius:6px; cursor:pointer;
+  transition:background 0.15s;
+}
+.el-grade-btn:hover:not(:disabled) { background:var(--primary-dark); }
+.el-grade-btn:disabled { opacity:0.4; cursor:not-allowed; }
+
+/* Back button */
+.el-back-btn {
+  display:inline-flex; align-items:center; gap:6px;
+  background:none; border:none; font-size:13px; font-weight:600;
+  color:var(--primary); cursor:pointer; padding:0; margin-bottom:16px;
+}
+.el-back-btn:hover { text-decoration:underline; }
+
+.el-sub-title { font-family:var(--font-heading); font-size:16px; font-weight:700; color:var(--text); margin-bottom:16px; }
+
+/* Reuse nil-table-card styles from NilaiPage */
+.nil-table-card { padding:0 !important; overflow:hidden; }
+.nil-tbl-hdr, .nil-tbl-row { display:flex; align-items:center; padding:0 16px; gap:8px; }
+.nil-tbl-hdr {
+  background:var(--bg); padding:11px 16px;
+  font-family:var(--font-heading); font-size:10.5px; font-weight:700;
+  color:var(--text3); text-transform:uppercase; letter-spacing:0.5px;
+  border-bottom:1px solid var(--border);
+}
+.nil-tbl-row { padding:10px 16px; border-bottom:1px solid var(--border); transition:background 0.13s; }
+.nil-tbl-row:last-of-type { border-bottom:none; }
+.nil-tbl-row:hover { background:#fafbfc; }
+.nil-col-no    { width:40px; flex-shrink:0; font-size:12px; color:var(--text3); text-align:center; }
+.nil-col-nim   { width:120px; flex-shrink:0; font-family:var(--font-heading); font-size:12.5px; font-weight:600; color:var(--text); }
+.nil-col-angka { width:110px; flex-shrink:0; }
+.nil-input {
+  width:100%; padding:7px 10px; border:1.5px solid var(--border);
+  border-radius:var(--radius-xs); font-family:var(--font-body); font-size:13px;
+  text-align:center; outline:none; background:#fff;
+  transition:border-color 0.15s;
+  -moz-appearance:textfield;
+}
+.nil-input::-webkit-outer-spin-button,
+.nil-input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+.nil-input:focus { border-color:var(--primary); box-shadow:0 0 0 3px rgba(15,158,123,0.1); }
+
+/* ═ Batch 9b — kotak item lebih lebar ═ */
+.card .list-item    { padding:16px 20px; min-height:64px; }
+.list-avatar        { width:44px; height:44px; border-radius:11px; }
+.nil-tbl-row        { padding:12px 18px; min-height:52px; }
+.nil-tbl-hdr        { padding:12px 18px; }
+.el-form-card       { padding:22px 24px; gap:16px; }
+.el-input,
+.el-textarea        { padding:11px 14px; font-size:13.5px; }
+
+/* ── Enhanced elearning dosen (Batch D) ── */
+.el-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+.el-add-btn { color: var(--primary); background: var(--primary-light); border-radius: var(--radius-xs); }
+.el-add-btn:hover { background: #b7f0dc; }
+.el-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+.el-textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+.el-submit-btn { background: var(--primary); border-radius: var(--radius-sm); box-shadow: 0 3px 10px var(--primary-glow); }
+.el-submit-btn:hover:not(:disabled) { background: var(--primary-dark); }
+.el-grade-btn { background: var(--primary); border-radius: var(--radius-xs); }
+.el-grade-btn:hover:not(:disabled) { background: var(--primary-dark); }
+.el-back-btn { color: var(--primary); }
+.el-form-card { border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+.nil-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }

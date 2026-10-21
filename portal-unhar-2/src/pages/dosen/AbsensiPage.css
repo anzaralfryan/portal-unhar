@@ -1,0 +1,116 @@
+@import '../shared.css';
+
+.abs-skeleton { height: 44px; background: var(--bg); border-radius: 10px; animation: shimmer 1.4s infinite; background: linear-gradient(90deg, var(--border) 25%, #f1f5f9 50%, var(--border) 75%); background-size: 200% 100%; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+
+.abs-empty { display:flex; flex-direction:column; align-items:center; gap:12px; padding:60px 20px; color:var(--text3); font-size:14px; text-align:center; }
+
+.abs-action-bar {
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  margin-bottom:20px;
+}
+.abs-matkul-title { font-family:var(--font-heading); font-size:18px; font-weight:700; color:var(--text); }
+
+/* Layout: pertemuan list + detail side-by-side */
+.abs-layout { display:grid; grid-template-columns:240px 1fr; gap:20px; align-items:start; }
+
+/* Pertemuan list */
+.abs-pertemuan-list {
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:14px; display:flex; flex-direction:column; gap:4px;
+}
+.abs-ptm-btn {
+  display:flex; align-items:center; gap:10px;
+  width:100%; padding:10px; border:none; background:none;
+  border-radius:var(--radius-xs); cursor:pointer; text-align:left;
+  transition:background 0.13s;
+}
+.abs-ptm-btn:hover { background:var(--bg); }
+.abs-ptm-btn.active { background:var(--primary-light); }
+.abs-ptm-num {
+  width:36px; height:36px; border-radius:var(--radius-xs);
+  background:var(--bg); display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-heading); font-size:12px; font-weight:700;
+  color:var(--primary); flex-shrink:0;
+}
+.abs-ptm-btn.active .abs-ptm-num { background:var(--primary); color:#fff; }
+.abs-ptm-topik { display:block; font-family:var(--font-heading); font-size:12px; font-weight:600; color:var(--text); }
+.abs-ptm-date { display:block; font-size:10px; color:var(--text3); margin-top:1px; }
+
+/* Detail */
+.abs-detail { min-width:0; }
+.abs-detail-hdr {
+  display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+  margin-bottom:16px;
+}
+.abs-detail-hdr h3 { font-family:var(--font-heading); font-size:15px; font-weight:700; color:var(--text); }
+
+.abs-rekap {
+  text-align:center; background:var(--primary-light); border-radius:var(--radius-sm);
+  padding:10px 18px; flex-shrink:0;
+}
+.abs-rekap-val { display:block; font-family:var(--font-heading); font-size:20px; font-weight:800; color:var(--primary); }
+.abs-rekap-lbl { font-size:10px; color:var(--text3); }
+
+/* Status select in table */
+.abs-status-select {
+  padding:5px 24px 5px 8px; border:1.5px solid var(--border);
+  border-radius:6px; font-family:var(--font-body); font-size:12px;
+  color:var(--text); outline:none; cursor:pointer; background:#fff;
+  -webkit-appearance:none; appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%238a9ab0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 6px center;
+  transition:border-color 0.15s;
+}
+.abs-status-select:focus { border-color:var(--primary); }
+
+/* Reuse e-learning form styles */
+.el-form-card { background:#fff; border:1.5px solid var(--border); border-radius:var(--radius); padding:18px 20px; margin-bottom:20px; display:flex; flex-direction:column; gap:14px; }
+.el-form-row { display:flex; flex-direction:column; gap:5px; }
+.el-form-row label { font-family:var(--font-heading); font-size:11px; font-weight:700; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; }
+.el-input { width:100%; padding:10px 12px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-family:var(--font-body); font-size:13px; color:var(--text); outline:none; background:#fff; transition:border-color 0.15s; }
+.el-input:focus { border-color:var(--primary); }
+.el-err { font-size:12px; color:var(--red); }
+.el-add-btn { font-family:var(--font-heading); font-size:12px; font-weight:700; color:var(--primary); background:var(--primary-light); border:none; padding:8px 16px; border-radius:var(--radius-xs); cursor:pointer; }
+.el-add-btn:hover { background:#ccf0e3; }
+.el-submit-btn { align-self:flex-start; background:var(--primary); color:#fff; border:none; padding:10px 24px; border-radius:var(--radius-sm); font-family:var(--font-heading); font-size:13px; font-weight:700; cursor:pointer; }
+.el-submit-btn:hover:not(:disabled) { background:var(--primary-dark); }
+.el-submit-btn:disabled { opacity:0.5; cursor:not-allowed; }
+.el-empty-text { font-size:13px; color:var(--text3); padding:20px 0; text-align:center; }
+
+/* Reuse table styles */
+.nil-table-card { padding:0 !important; overflow:hidden; }
+.nil-tbl-hdr, .nil-tbl-row { display:flex; align-items:center; padding:0 16px; gap:8px; }
+.nil-tbl-hdr { background:var(--bg); padding:11px 16px; font-family:var(--font-heading); font-size:10.5px; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid var(--border); }
+.nil-tbl-row { padding:10px 16px; border-bottom:1px solid var(--border); transition:background 0.13s; }
+.nil-tbl-row:last-of-type { border-bottom:none; }
+.nil-tbl-row:hover { background:#fafbfc; }
+.nil-col-no { width:40px; flex-shrink:0; font-size:12px; color:var(--text3); text-align:center; }
+.nil-col-nim { width:120px; flex-shrink:0; font-family:var(--font-heading); font-size:12.5px; font-weight:600; color:var(--text); }
+
+/* ── Enhanced absensi (Batch D) ── */
+.abs-pertemuan-list {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.abs-ptm-btn {
+  border-radius: var(--radius-sm);
+}
+.abs-ptm-btn.active { background: var(--primary-light); }
+.abs-ptm-num { color: var(--primary); }
+.abs-ptm-btn.active .abs-ptm-num { background: var(--primary); color: #fff; }
+
+.abs-rekap { background: var(--primary-light); border-radius: var(--radius-sm); }
+.abs-rekap-val { color: var(--primary); }
+
+.abs-status-select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+
+.el-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+.el-add-btn { color: var(--primary); background: var(--primary-light); }
+.el-add-btn:hover { background: #b7f0dc; }
+.el-submit-btn { background: var(--primary); box-shadow: 0 3px 10px var(--primary-glow); }
+.el-submit-btn:hover:not(:disabled) { background: var(--primary-dark); }

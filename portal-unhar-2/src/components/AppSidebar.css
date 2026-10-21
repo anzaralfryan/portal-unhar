@@ -1,0 +1,175 @@
+/* ── Sidebar shell ──────────────────────────── */
+.app-sidebar {
+  height: 100dvh;
+  background: #fff;
+  border-right: 2px solid #B1AB86;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 240px;
+}
+.app-sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, #5D8736, #31511E);
+  border-radius: 0 2px 2px 0;
+}
+.app-sidebar.collapsed {
+  width: 56px;
+}
+
+/* ── Top bar (hamburger + logo) ─────────────── */
+.asb-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  min-height: 60px;
+}
+
+/* Hamburger — 3 garis */
+.asb-hamburger {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  padding: 0;
+}
+.asb-hamburger:hover { background: var(--bg); }
+.asb-hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text2);
+  border-radius: 2px;
+}
+
+.asb-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  overflow: hidden;
+}
+.asb-logo-img {
+  width: 30px; height: 30px;
+  object-fit: contain; border-radius: 6px; flex-shrink: 0;
+}
+.asb-logo-title {
+  font-family: var(--font-heading);
+  font-size: 13.5px; font-weight: 800; color: var(--text); line-height: 1.2;
+  white-space: nowrap;
+}
+.asb-logo-sub { font-size: 9px; color: var(--text3); line-height: 1.3; white-space: nowrap; }
+
+/* ── User card ──────────────────────────────── */
+.asb-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #F4FFC3;
+  margin: 12px 10px 4px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.asb-avatar {
+  width: 36px; height: 36px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 12px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.asb-user-text { flex: 1; min-width: 0; }
+.asb-user-name {
+  font-family: var(--font-heading); font-size: 12px; font-weight: 700;
+  color: var(--text);
+  white-space: normal;       /* allow wrap */
+  word-break: break-word;
+  line-height: 1.35;
+}
+.asb-user-info {
+  font-size: 10px; color: var(--text2); margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ── Navigation ─────────────────────────────── */
+.asb-nav {
+  flex: 1;
+  padding: 8px 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.asb-nav::-webkit-scrollbar { display: none; }
+
+.asb-nav-label {
+  font-family: var(--font-heading);
+  font-size: 9.5px; font-weight: 700;
+  color: var(--text3); text-transform: uppercase;
+  letter-spacing: 0.7px; padding: 4px 4px 8px;
+}
+
+.asb-nav-item {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 9px 10px;
+  border-radius: 8px; border: none; background: none;
+  cursor: pointer; text-align: left;
+  font-family: var(--font-body);
+  font-size: 13px; font-weight: 500; color: var(--text2);
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+.asb-nav-item:hover { background: var(--bg); color: var(--text); }
+.asb-nav-item.active { background: #F4FFC3; color: #31511E; font-weight: 600; }
+
+/* Icon-only mode (collapsed) */
+.asb-nav-item.icon-only {
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.asb-nav-icon {
+  width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.asb-nav-icon svg { width: 17px; height: 17px; stroke: currentColor; }
+
+/* ── Footer ─────────────────────────────────── */
+.asb-footer {
+  padding: 12px 8px 16px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.asb-logout {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; padding: 8px 10px;
+  border-radius: 8px; border: none; background: none;
+  cursor: pointer; color: var(--red);
+  font-size: 13px; font-weight: 500;
+  white-space: nowrap;
+}
+.asb-logout:hover { background: #fde8e8; }
+.asb-logout svg { width: 16px; height: 16px; stroke: currentColor; flex-shrink: 0; }
+.asb-logout.icon-only { justify-content: center; padding: 10px 0; }
+
+.asb-footer-copy {
+  font-size: 9.5px; color: var(--text3);
+  margin-top: 8px; padding-left: 10px;
+  white-space: nowrap;
+}

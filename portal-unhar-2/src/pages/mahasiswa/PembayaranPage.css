@@ -1,0 +1,173 @@
+@import '../shared.css';
+
+/* ═══════════════════════════════════════════════
+   PEMBAYARAN PAGE — Redesign Batch C
+═══════════════════════════════════════════════ */
+
+.pem-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+.pem-col-left  { min-width: 0; }
+.pem-col-right { min-width: 0; }
+
+/* ── Tagihan card ── */
+.pem-tagihan-card {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius-lg);
+  padding: 24px 24px 20px;
+  margin-bottom: 16px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 32px var(--primary-glow);
+}
+.pem-tagihan-card::before {
+  content: ''; position: absolute; top: -50px; right: -50px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: rgba(255,255,255,0.07); pointer-events: none;
+}
+.pem-tagihan-card::after {
+  content: ''; position: absolute; bottom: -60px; left: 20px;
+  width: 150px; height: 150px; border-radius: 50%;
+  background: rgba(255,255,255,0.04); pointer-events: none;
+}
+.pem-tagihan-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 20px; position: relative; z-index: 1;
+}
+.pem-tagihan-label {
+  font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,0.7);
+  text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 6px;
+}
+.pem-tagihan-nominal {
+  font-family: var(--font-heading); font-size: 32px; font-weight: 800;
+  color: #fff; line-height: 1; margin-bottom: 4px; letter-spacing: -0.5px;
+}
+.pem-tagihan-desc { font-size: 13px; color: rgba(255,255,255,0.7); }
+.pem-tagihan-due {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.12); border-radius: 20px;
+  padding: 4px 12px; font-size: 11.5px; color: rgba(255,255,255,0.85);
+  margin-top: 6px; font-weight: 600;
+}
+.pem-tagihan-due svg { opacity: 0.8; }
+
+/* ── VA Box ── */
+.pem-va-box {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: rgba(255,255,255,0.13);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-sm);
+  padding: 13px 16px; margin-bottom: 10px;
+  position: relative; z-index: 1;
+  backdrop-filter: blur(6px);
+}
+.pem-va-label { font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 600; margin-bottom: 3px; }
+.pem-va-kode  { font-family: var(--font-heading); font-size: 20px; font-weight: 800; color: #fff; letter-spacing: 1.5px; }
+.pem-copy-btn {
+  padding: 7px 14px; border-radius: var(--radius-xs); border: 1.5px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1); color: #fff; font-size: 12px; font-weight: 700;
+  cursor: pointer; flex-shrink: 0; font-family: var(--font-heading);
+  transition: background 0.15s; backdrop-filter: blur(4px);
+}
+.pem-copy-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* ── Bayar button ── */
+.pem-btn-bayar {
+  width: 100%; padding: 14px;
+  background: rgba(255,255,255,0.18); color: #fff;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-radius: var(--radius-sm); cursor: pointer;
+  font-family: var(--font-heading); font-size: 14px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(6px);
+  position: relative; z-index: 1;
+}
+.pem-btn-bayar:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.6); }
+.pem-btn-bayar--sm { width: auto; padding: 10px 20px; font-size: 13px; }
+
+/* Tombol konfirmasi di dalam modal (background putih) butuh kontras berbeda
+   dari .pem-btn-bayar biasa yang didesain untuk kartu hijau bergradasi.
+   Tanpa override ini, tombol jadi putih-di-atas-putih (tidak terlihat). */
+.pem-modal-footer .pem-btn-bayar {
+  background: var(--primary); color: #fff;
+  border: 2px solid var(--primary);
+}
+.pem-modal-footer .pem-btn-bayar:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+.pem-modal-footer .pem-btn-bayar:disabled {
+  background: #cbd5e1; border-color: #cbd5e1; color: #fff;
+  cursor: not-allowed; opacity: 0.8;
+}
+
+/* ── Riwayat (col kanan) ── */
+.pem-riwayat-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--primary-light);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  color: var(--primary);
+}
+
+/* ── Modal metode ── */
+.pem-modal-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.pem-modal {
+  background: var(--card); border-radius: var(--radius-xl);
+  width: 100%; max-width: 420px; max-height: 90dvh;
+  overflow-y: auto; box-shadow: var(--shadow-lg);
+}
+.pem-modal-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px 14px; border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: var(--card); z-index: 1;
+}
+.pem-modal-hdr h3 { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--text); }
+.pem-modal-close {
+  width: 30px; height: 30px; border-radius: 50%; border: none;
+  background: var(--bg); cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--text3); transition: background 0.13s;
+}
+.pem-modal-close:hover { background: #fee2e2; color: var(--red); }
+.pem-modal-body   { padding: 16px 20px; }
+.pem-modal-footer { padding: 14px 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: flex-end; }
+
+.pem-info-box {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: var(--primary-light); border-radius: var(--radius-sm);
+  padding: 11px 13px; font-size: 12.5px; color: var(--primary);
+  margin-bottom: 14px; line-height: 1.5;
+}
+.pem-metode-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 14px; border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); margin-bottom: 8px; cursor: pointer;
+  transition: border-color 0.13s, background 0.13s;
+  box-shadow: var(--shadow-xs);
+}
+.pem-metode-item.active { border-color: var(--primary); background: var(--primary-light); }
+.pem-radio {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid var(--border); flex-shrink: 0;
+  transition: border-color 0.13s, background 0.13s;
+}
+.pem-radio.checked { border-color: var(--primary); background: var(--primary); box-shadow: inset 0 0 0 3px #fff; }
+
+.pem-btn-cancel {
+  padding: 10px 18px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border); background: var(--card);
+  color: var(--text2); font-family: var(--font-heading);
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: background 0.13s;
+}
+.pem-btn-cancel:hover { background: var(--bg); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .pem-grid { grid-template-columns: 1fr; }
+}

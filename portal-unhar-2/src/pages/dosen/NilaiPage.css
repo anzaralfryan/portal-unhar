@@ -1,0 +1,164 @@
+@import '../shared.css';
+
+.nil-skeleton { height: 44px; background: var(--bg); border-radius: 10px; animation: shimmer 1.4s infinite; background: linear-gradient(90deg, var(--border) 25%, #f1f5f9 50%, var(--border) 75%); background-size: 200% 100%; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+
+.nil-empty { display:flex; flex-direction:column; align-items:center; gap:12px; padding:60px 20px; color:var(--text3); font-size:14px; text-align:center; }
+
+.nil-matkul-hdr { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:20px; }
+.nil-matkul-title { font-family:var(--font-heading); font-size:18px; font-weight:700; color:var(--text); }
+.nil-matkul-sub { font-size:13px; color:var(--text3); margin-top:3px; }
+
+.nil-save-btn {
+  display:flex; align-items:center; gap:7px;
+  background:var(--primary); color:#fff; border:none;
+  padding:10px 20px; border-radius:var(--radius-sm);
+  font-family:var(--font-heading); font-size:13px; font-weight:700;
+  cursor:pointer; white-space:nowrap; flex-shrink:0;
+  box-shadow:0 3px 10px rgba(15,158,123,0.25);
+  transition:background 0.2s;
+}
+.nil-save-btn:hover:not(:disabled) { background:var(--primary-dark); }
+.nil-save-btn.disabled { opacity:0.5; cursor:not-allowed; }
+.nil-spinner { width:15px; height:15px; border:2px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.nil-success {
+  background:#d1fae5; border:1px solid #6ee7b7; border-radius:var(--radius-sm);
+  padding:10px 16px; font-size:13px; color:#065f46;
+  margin-bottom:16px; display:flex; align-items:center; gap:8px;
+}
+
+/* Table */
+.nil-table-card { padding:0 !important; overflow-x:auto; overflow-y:hidden; }
+
+.nil-tbl-hdr, .nil-tbl-row {
+  display:flex; align-items:center; padding:0 16px; gap:8px;
+  min-width:max-content;
+}
+.nil-tbl-hdr {
+  background:var(--bg); padding:11px 16px;
+  font-family:var(--font-heading); font-size:10.5px; font-weight:700;
+  color:var(--text3); text-transform:uppercase; letter-spacing:0.5px;
+  border-bottom:1px solid var(--border);
+}
+.nil-tbl-row {
+  padding:10px 16px;
+  border-bottom:1px solid var(--border);
+  transition:background 0.13s;
+}
+.nil-tbl-row:last-of-type { border-bottom:none; }
+.nil-tbl-row:hover { background:#fafbfc; }
+.nil-tbl-row.edited { background:#f0fdf4; }
+
+.nil-col-no    { width:40px; flex-shrink:0; font-size:12px; color:var(--text3); text-align:center; }
+.nil-col-nim   { width:120px; flex-shrink:0; font-family:var(--font-heading); font-size:12.5px; font-weight:600; color:var(--text); }
+.nil-col-nama  { flex:1; font-size:13px; color:var(--text); }
+.nil-col-angka { width:110px; flex-shrink:0; }
+.nil-col-huruf { width:60px; flex-shrink:0; text-align:center; }
+
+.nil-input {
+  width:100%; padding:7px 10px; border:1.5px solid var(--border);
+  border-radius:var(--radius-xs); font-family:var(--font-body); font-size:13px;
+  text-align:center; outline:none; background:#fff;
+  transition:border-color 0.15s, box-shadow 0.15s;
+  -moz-appearance:textfield;
+}
+.nil-input::-webkit-outer-spin-button,
+.nil-input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+.nil-input:focus { border-color:var(--primary); box-shadow:0 0 0 3px rgba(15,158,123,0.1); }
+.nil-input::placeholder { color:#c4cdd5; }
+
+.nil-grade-pill {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:32px; padding:4px 8px; border-radius:6px;
+  font-family:var(--font-heading); font-size:12px; font-weight:700;
+}
+
+.nil-tbl-footer {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; background:var(--bg);
+  font-size:12px; color:var(--text3);
+  border-top:1px solid var(--border);
+}
+.nil-changes-badge {
+  background:#fef3c7; color:#92400e; padding:3px 10px;
+  border-radius:20px; font-size:11px; font-weight:600;
+}
+
+/* ── Enhanced nil dosen (Batch D) ── */
+.nil-save-btn {
+  box-shadow: 0 4px 14px var(--primary-glow);
+  border-radius: var(--radius-sm);
+}
+.nil-save-btn:hover:not(:disabled) { background: var(--primary-dark); box-shadow: 0 6px 18px var(--primary-glow); }
+
+.nil-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+.nil-tbl-row.edited { background: #f0fdf4; }
+.nil-tbl-row:hover { background: var(--bg); }
+
+.nil-success { border-radius: var(--radius-sm); border-color: #86efac; }
+
+.nil-table-card {
+  border-radius: var(--radius);
+  overflow-x: auto; overflow-y: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+/* ── Batch: Bonus Nilai Kuis ── */
+.nil-error {
+  background:#fee2e2; border:1px solid #fca5a5; border-radius:var(--radius-sm);
+  padding:10px 16px; font-size:13px; color:#991b1b;
+  margin-bottom:16px; display:flex; align-items:center; gap:8px;
+}
+
+.nil-bonus-card {
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  background:var(--primary-light); border:1px solid var(--border);
+  border-radius:var(--radius); padding:14px 16px; margin-bottom:16px;
+}
+.nil-bonus-card .nil-bonus-label {
+  display:flex; flex-direction:column; gap:2px; flex:1; min-width:200px;
+}
+.nil-bonus-card .nil-bonus-label strong {
+  font-family:var(--font-heading); font-size:13px; color:var(--text);
+}
+.nil-bonus-card .nil-bonus-label span {
+  font-size:11.5px; color:var(--text3); line-height:1.5;
+}
+.nil-bonus-input-group {
+  display:flex; align-items:center; gap:8px; flex-shrink:0;
+}
+.nil-bonus-input {
+  width:80px; padding:8px 10px; border:1.5px solid var(--border);
+  border-radius:var(--radius-xs); font-size:14px; font-weight:700;
+  text-align:center; outline:none; background:#fff;
+}
+.nil-bonus-input:focus { border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-glow); }
+.nil-bonus-save {
+  padding:8px 14px; border:none; border-radius:var(--radius-xs);
+  background:var(--primary); color:#fff; font-family:var(--font-heading);
+  font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap;
+}
+.nil-bonus-save:hover:not(:disabled) { background:var(--primary-dark); }
+.nil-bonus-save:disabled { opacity:0.5; cursor:not-allowed; }
+
+/* Kolom tambahan tabel komponen nilai */
+.nil-col-komponen { width:72px; flex-shrink:0; }
+.nil-col-kuis     { width:78px; flex-shrink:0; text-align:center; }
+.nil-col-bonus    { width:78px; flex-shrink:0; text-align:center; }
+.nil-col-akhir    { width:72px; flex-shrink:0; text-align:center; font-family:var(--font-heading); font-weight:700; }
+
+.nil-kuis-pill {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:48px; padding:3px 6px; border-radius:6px;
+  font-size:11.5px; font-weight:700; color:var(--text2); background:var(--bg);
+}
+.nil-bonus-pill {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:48px; padding:3px 6px; border-radius:6px;
+  font-size:11.5px; font-weight:700;
+}
+.nil-bonus-pill.has-bonus { color:#059669; background:#d1fae5; }
+.nil-bonus-pill.no-bonus  { color:var(--text3); background:var(--bg); }
